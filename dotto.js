@@ -1,154 +1,133 @@
-// =====================
-// SECTIONS
-// =====================
-const loginSection = document.getElementById("loginSection");
-const registerSection = document.getElementById("registerSection");
-const dashboardSection = document.getElementById("dashboardSection");
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-// =====================
-// LINKS
-// =====================
-const showRegister = document.getElementById("showRegister");
-const showLogin = document.getElementById("showLogin");
+const SUPABASE_URL = "https://qubemspkiqozonvdmvws.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF1YmVtc3BraXFvem9udmRtdndzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMxNjQzNjAsImV4cCI6MjA5ODc0MDM2MH0.0ljnq2qh_5AlYTupqLhK4Jsj77ocicMwoDY0NeOewHc";
 
-// =====================
-// BUTTONS
-// =====================
-const loginBtn = document.getElementById("loginBtn");
-const registerBtn = document.getElementById("registerBtn");
-const logoutBtn = document.getElementById("logoutBtn");
-const submitBtn = document.getElementById("submitBtn");
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// =====================
-// SHOW REGISTER
-// =====================
-showRegister.addEventListener("click", function (e) {
-	    e.preventDefault();
-	        loginSection.style.display = "none";
-	            registerSection.style.display = "block";
-	            });
+/* ======================
+   SWITCH PAGES
+   ====================== */
 
-	            // =====================
-	            // SHOW LOGIN
-	            // =====================
-	            showLogin.addEventListener("click", function (e) {
-	            	    e.preventDefault();
-	            	        registerSection.style.display = "none";
-	            	            loginSection.style.display = "block";
-	            	            });
+   window.showRegister = function () {
+   	  document.getElementById("loginSection").style.display = "none";
+   	    document.getElementById("registerSection").style.display = "block";
+   	    };
 
-	            	            // =====================
-	            	            // REGISTER USER
-	            	            // =====================
-	            	            registerBtn.addEventListener("click", function () {
+   	    window.showLogin = function () {
+   	    	  document.getElementById("registerSection").style.display = "none";
+   	    	    document.getElementById("loginSection").style.display = "block";
+   	    	    };
 
-	            	            	    const fullName = document.getElementById("fullName").value.trim();
-	            	            	        const gender = document.getElementById("gender").value;
-	            	            	            const email = document.getElementById("email").value.trim();
-	            	            	                const phone = document.getElementById("phone").value.trim();
-	            	            	                    const birthdate = document.getElementById("birthdate").value;
-	            	            	                        const password = document.getElementById("password").value;
-	            	            	                            const confirmPassword = document.getElementById("confirmPassword").value;
+   	    	    /* ======================
+   	    	       REGISTER
+   	    	       ====================== */
 
-	            	            	                                if (
-	            	            	                                	        fullName === "" ||
-	            	            	                                	                gender === "" ||
-	            	            	                                	                        email === "" ||
-	            	            	                                	                                phone === "" ||
-	            	            	                                	                                        birthdate === "" ||
-	            	            	                                	                                                password === "" ||
-	            	            	                                	                                                        confirmPassword === ""
-	            	            	                                	                                                            ) {
-	            	            	                                	                                                            	        alert("Please fill all fields.");
-	            	            	                                	                                                            	                return;
-	            	            	                                	                                                            	                    }
+   	    	       window.register = async function () {
 
-	            	            	                                	                                                            	                        if (password !== confirmPassword) {
-	            	            	                                	                                                            	                        	        alert("Passwords do not match.");
-	            	            	                                	                                                            	                        	                return;
-	            	            	                                	                                                            	                        	                    }
+   	    	       	  const fullName = document.getElementById("fullName").value;
+   	    	       	    const gender = document.getElementById("gender").value;
+   	    	       	      const email = document.getElementById("email").value;
+   	    	       	        const phone = document.getElementById("phone").value;
+   	    	       	          const birthdate = document.getElementById("birthdate").value;
+   	    	       	            const password = document.getElementById("password").value;
+   	    	       	              const confirmPassword = document.getElementById("confirmPassword").value;
 
-	            	            	                                	                                                            	                        	                        localStorage.setItem("fullName", fullName);
-	            	            	                                	                                                            	                        	                            localStorage.setItem("gender", gender);
-	            	            	                                	                                                            	                        	                                localStorage.setItem("email", email);
-	            	            	                                	                                                            	                        	                                    localStorage.setItem("phone", phone);
-	            	            	                                	                                                            	                        	                                        localStorage.setItem("birthdate", birthdate);
-	            	            	                                	                                                            	                        	                                            localStorage.setItem("password", password);                                             	                        	                                                alert("Registration successful. Please login.");
+   	    	       	                if (password !== confirmPassword) {
+   	    	       	                	    alert("Passwords do not match!");
+   	    	       	                	        return;
+   	    	       	                	          }
 
-	            	                                                       	                        	                                                    registerSection.style.display = "none";
-	            	                                  	                                                            	                        	                                                        loginSection.style.display = "block";
-	            	                                  	                                                            	                        	                                                        
-	            	       });
-	            	       
-// =====================
-// LOGIN USER
-// =====================
-loginBtn.addEventListener("click", function () {
+   	    	       	                	            const { data, error } = await supabase.auth.signUp({
+   	    	       	                	            	    email,
+   	    	       	                	            	        password
+   	    	       	                	            	          });
 
-	    const email = document.getElementById("loginEmail").value.trim();
-	        const password = document.getElementById("loginPassword").value;
+   	    	       	                	            	            if (error) {
+   	    	       	                	            	            	    alert(error.message);
+   	    	       	                	            	            	        return;
+   	    	       	                	            	            	          }
 
-	            const savedEmail = localStorage.getItem("email");
-	                const savedPassword = localStorage.getItem("password");
+   	    	       	                	            	            	            // Save profile
+   	    	       	                	            	            	              await supabase.from("profiles").insert([{
+   	    	       	                	            	            	              	    full_name: fullName,
+   	    	       	                	            	            	              	        gender,
+   	    	       	                	            	            	              	            email,
+   	    	       	                	            	            	              	                phone,
+   	    	       	                	            	            	              	                    birth_date: birthdate
+   	    	       	                	            	            	              	                      }]);
 
-	                    if (email === savedEmail && password === savedPassword) {
+   	    	       	                	            	            	              	                        alert("Registration successful!");
+   	    	       	                	            	            	              	                          showLogin();
+   	    	       	                	            	            	              	                          };
 
-	                    	        loginSection.style.display = "none";
-	                    	                dashboardSection.style.display = "block";
+   	    	       	                	            	            	              	                          /* ======================
+   	    	       	                	            	            	              	                             LOGIN
+   	    	       	                	            	            	              	                             ====================== */
 
-	                    	                        document.getElementById("userEmail").textContent = savedEmail;
-	                    	                                document.getElementById("dashGender").value =
-	                    	                                            localStorage.getItem("gender");
+   	    	       	                	            	            	              	                             window.login = async function () {
 
-	                    	                                                } else {
-	                    	                                                	        alert("Invalid email or password.");
-	                    	                                                	            }
+   	    	       	                	            	            	              	                             	  const email = document.getElementById("loginEmail").value;
+   	    	       	                	            	            	              	                             	    const password = document.getElementById("loginPassword").value;
 
-	                    	                                                	            });
+   	    	       	                	            	            	              	                             	      const { data, error } = await supabase.auth.signInWithPassword({
+   	    	       	                	            	            	              	                             	      	    email,
+   	    	       	                	            	            	              	                             	      	        password
+   	    	       	                	            	            	              	                             	      	          });
 
-	                    	                                                	            // =====================
-	                    	                                                	            // SUBMIT REQUEST
-	                    	                                                	            // =====================
-	                    	                                                	            submitBtn.addEventListener("click", function () {
+   	    	       	                	            	            	              	                             	      	            if (error) {
+   	    	       	                	            	            	              	                             	      	            	    alert(error.message);
+   	    	       	                	            	            	              	                             	      	            	        return;
+   	    	       	                	            	            	              	                             	      	            	          }
 
-	                    	                                                	            	    const phone = document.getElementById("dashPhone").value.trim();
-	                    	                                                	            	        const age = document.getElementById("age").value.trim();
-	                    	                                                	            	            const gender = document.getElementById("dashGender").value;
-	                    	                                                	            	                const category = document.getElementById("category").value;
-	                    	                                                	            	                    const problem = document.getElementById("problem").value.trim();
+   	    	       	                	            	            	              	                             	      	            	            document.getElementById("loginSection").style.display = "none";
+   	    	       	                	            	            	              	                             	      	            	              document.getElementById("registerSection").style.display = "none";
+   	    	       	                	            	            	              	                             	      	            	                document.getElementById("dashboardSection").style.display = "block";
 
-	                    	                                                	            	                        if (
-	                    	                                                	            	                        	        phone === "" ||
-	                    	                                                	            	                        	                age === "" ||
-	                    	                                                	            	                        	                        category === "" ||
-	                    	                                                	            	                        	                                problem === ""
-	                    	                                                	            	                        	                                    ) {
-	                    	                                                	            	                        	                                    	        alert("Please fill all fields.");
-	                    	                                                	            	                        	                                    	                return;
-	                    	                                                	            	                        	                                    	                    }
+   	    	       	                	            	            	              	                             	      	            	                  document.getElementById("userEmail").innerText = email;
+   	    	       	                	            	            	              	                             	      	            	                  };
 
-	                    	                                                	            	                        	                                    	                        console.log({
-	                    	                                                	            	                        	                                    	                        	        email: localStorage.getItem("email"),
-	                    	                                                	            	                        	                                    	                        	                phone: phone,
-	                    	                                                	            	                        	                                    	                        	                        age: age,
-	                    	                                                	            	                        	                                    	                        	                                gender: gender,
-	                    	                                                	            	                        	                                    	                        	                                        category: category,
-	                    	                                                	            	                        	                                    	                        	                                                problem: problem
-	                    	                                                	            	                        	                                    	                        	                                                    });
+   	    	       	                	            	            	              	                             	      	            	                  /* ======================
+   	    	       	                	            	            	              	                             	      	            	                     SUBMIT REQUEST
+   	    	       	                	            	            	              	                             	      	            	                     ====================== */
 
-	                    	                                                	            	                        	                                    	                        	                                                        alert("Request submitted successfully.");
+   	    	       	                	            	            	              	                             	      	            	                     window.submitRequest = async function () {
 
-	                    	                                                	            	                        	                                    	                        	                                                        });
+   	    	       	                	            	            	              	                             	      	            	                     	  const email = document.getElementById("userEmail").innerText;
+   	    	       	                	            	            	              	                             	      	            	                     	    const phone = document.getElementById("dashPhone").value;
+   	    	       	                	            	            	              	                             	      	            	                     	      const age = document.getElementById("age").value;
+   	    	       	                	            	            	              	                             	      	            	                     	        const sex = document.getElementById("dashGender").value;
+   	    	       	                	            	            	              	                             	      	            	                     	          const category = document.getElementById("category").value;
+   	    	       	                	            	            	              	                             	      	            	                     	            const problem = document.getElementById("problem").value;
 
-	                    	                                                	            	                        	                                    	                        	                                                        // =====================
-	                    	                                                	            	                        	                                    	                        	                                                        // LOGOUT
-	                    	                                                	            	                        	                                    	                        	                                                        // =====================
-	                    	                                                	            	                        	                                    	                        	                                                        logoutBtn.addEventListener("click", function () {
+   	    	       	                	            	            	              	                             	      	            	                     	              const { error } = await supabase.from("support_requests").insert([{
+   	    	       	                	            	            	              	                             	      	            	                     	              	    email,
+   	    	       	                	            	            	              	                             	      	            	                     	              	        phone,
+   	    	       	                	            	            	              	                             	      	            	                     	              	            age,
+   	    	       	                	            	            	              	                             	      	            	                     	              	                sex,
+   	    	       	                	            	            	              	                             	      	            	                     	              	                    category,
+   	    	       	                	            	            	              	                             	      	            	                     	              	                        problem
+   	    	       	                	            	            	              	                             	      	            	                     	              	                          }]);
 
-	                    	                                                	            	                        	                                    	                        	                                                        	    dashboardSection.style.display = "none";
-	                    	                 	                        	                                    loginSection.style.display = "block";
+   	    	       	                	            	            	              	                             	      	            	                     	              	                            if (error) {
+   	    	       	                	            	            	              	                             	      	            	                     	              	                            	    alert(error.message);
+   	    	       	                	            	            	              	                             	      	            	                     	              	                            	        return;
+   	    	       	                	            	            	              	                             	      	            	                     	              	                            	          }
 
-	                    	                                  	                        	                                                        	            document.getElementById("loginEmail").value = "";
-	                  	                        	                               document.getElementById("loginPassword").value = "";
+   	    	       	                	            	            	              	                             	      	            	                     	              	                            	            alert("Request sent successfully!");
+   	    	       	                	            	            	              	                             	      	            	                     	              	                            	            };
 
-	                                   	                        	                                             });
+   	    	       	                	            	            	              	                             	      	            	                     	              	                            	            /* ======================
+   	    	       	                	            	            	              	                             	      	            	                     	              	                            	               LOGOUT
+   	    	       	                	            	            	              	                             	      	            	                     	              	                            	               ====================== */
+
+   	    	       	                	            	            	              	                             	      	            	                     	              	                            	               window.logout = async function () {
+
+   	    	       	                	            	            	              	                             	      	            	                     	              	                            	               	  await supabase.auth.signOut();
+
+   	    	       	                	            	            	              	                             	      	            	                     	              	                            	               	    document.getElementById("dashboardSection").style.display = "none";
+   	    	       	                	            	            	              	                             	      	            	                     	              	                            	               	      document.getElementById("loginSection").style.display = "block";
+
+   	    	       	                	            	            	              	                                            alert("Logged out!");
+   	    	       	       	              	                             	      	            	                            };
+   	    	       	       	              	                             	      	            	                           
