@@ -6,13 +6,15 @@
 	                }
 
 	                body{
-	                	    background: greenyellow;
-	                	        min-height:100vh;
+	                	    background: yellow;
+	                	    
 	                	            display:flex;
 	                	                justify-content:center;
 	                	                    align-items:center;
 	                	                        padding:20px;
-	                	                            flex-direction:column;
+	                	                 
+
+           flex-direction:column;
 	                	                            }
 
 	                	                            /* HEADER */
