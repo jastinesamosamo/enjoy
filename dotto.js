@@ -80,6 +80,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	              	                             	      	            	        return;
    	    	       	                	            	            	              	                             	      	            	          }
 
+loadMyRequests();
    	    	       	                	            	            	              	                             	      	            	            document.getElementById("loginSection").style.display = "none";
    	    	       	                	            	            	              	                             	      	            	              document.getElementById("registerSection").style.display = "none";
    	    	       	                	            	            	              	                             	      	            	                document.getElementById("dashboardSection").style.display = "block";
@@ -87,6 +88,44 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	              	                             	      	            	                  document.getElementById("userEmail").innerText = email;
    	    	       	                	            	            	              	                             	      	            	                  };
 
+async function loadMyRequests(){
+
+    const { data: userData } = await supabase.auth.getUser();
+
+    const user = userData.user;
+
+    const { data, error } = await supabase
+        .from("support_request")
+        .select("*")
+        .eq("user_email", user.email)
+        .order("created_at", { ascending: false });
+
+
+    if(error){
+        console.log(error.message);
+        return;
+    }
+
+
+    const box = document.getElementById("userRequests");
+
+    box.innerHTML = "";
+
+
+    data.forEach(req => {
+
+        box.innerHTML += `
+        <div>
+            <hr>
+            <p><b>Problem:</b> ${req.problem}</p>
+            <p><b>Status:</b> ${req.status}</p>
+            <p><b>Reply:</b> ${req.reply || "Bado hujajibiwa"}</p>
+        </div>
+        `;
+
+    });
+
+}
    	    	       	                	            	            	              	                             	      	            	                  /* ======================
    	    	       	                	            	            	              	                             	      	            	                     SUBMIT REQUEST
    	    	       	                	            	            	              	                             	      	            	                     ====================== */
