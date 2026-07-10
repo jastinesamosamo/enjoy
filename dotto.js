@@ -51,7 +51,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
    	    	       	                	            	            	            // Save profile
    	    	       	                	            	            	              await supabase.from("profiles").insert([{
-                                                                                      user_id:userId;
+                                                                                      user_id:userId,
    	    	       	                	            	            	              	    full_name: fullName,
                                                                                       
    	    	       	                	            	            	              	        gender,
@@ -113,6 +113,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	              	                             	      	            	                     window.submitRequest = async function () {
 
    	    	       	                	            	            	              	                             	      	            	                     	  const email = document.getElementById("userEmail").innerText;
+                                                                                                                                                                  const fullName = document.getElementById("userName").innerText;
    	    	       	                	            	            	              	                             	      	            	                     	    const phone = document.getElementById("dashPhone").value;
    	    	       	                	            	            	              	                             	      	            	                     	      const age = document.getElementById("age").value;
    	    	       	                	            	            	              	                             	      	            	                     	        const sex = document.getElementById("dashGender").value;
@@ -127,7 +128,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	              	                             	      	            	                     	              	                sex,
    	    	       	                	            	            	              	                             	      	            	                     	              	                    category,
    	    	       	                	            	            	              	                             	      	            	                     	              	                        problem,
-                                                                                                                                                                                   status
+                                                                                                                                                                                   status:"pending"
                                                                                                                                                                            
    	    	       	                	            	            	              	                             	      	            	                     	              	                          }]);
 
@@ -138,7 +139,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	            alert("Request sent successfully!");
                                                                                                                                                                   window.location.href = "myrequests.html";
-   	    	       	                	            	            	            loadMyRequests();  	                             	      	            	                     	              	                            	            };
+   	    	       	                	            	            	           	                             	      	            	                     	              	                            	            };
 
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	            /* ======================
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	               LOGOUT
