@@ -121,7 +121,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	              	                             	      	            	                     	            const problem = document.getElementById("problem").value;
 
    	    	       	                	            	            	              	                             	      	            	                     	              const { error } = await supabase.from("support_requests").insert([{
-                                                                                                                                                                                   full_name,
+                                                                                                                                                                                   fullname,
                                                                                                                                                                                    
    	    	       	                	            	            	              	                             	      	            	                     	              	    email,
    	    	       	                	            	            	              	                             	      	            	                     	              	        phone,
