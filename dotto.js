@@ -47,11 +47,13 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	    alert(error.message);
    	    	       	                	            	            	        return;
    	    	       	                	            	            	          }
-                      alert("Requests zilizopatikana: " + data.length);
+                      const userId = data.user.id;
 
    	    	       	                	            	            	            // Save profile
    	    	       	                	            	            	              await supabase.from("profiles").insert([{
+                                                                                      user_id:userId;
    	    	       	                	            	            	              	    full_name: fullName,
+                                                                                      
    	    	       	                	            	            	              	        gender,
    	    	       	                	            	            	              	            email,
    	    	       	                	            	            	              	                phone,
