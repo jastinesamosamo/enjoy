@@ -47,6 +47,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	    alert(error.message);
    	    	       	                	            	            	        return;
    	    	       	                	            	            	          }
+                      alert("Requests zilizopatikana: " + data.length);
 
    	    	       	                	            	            	            // Save profile
    	    	       	                	            	            	              await supabase.from("profiles").insert([{
