@@ -47,7 +47,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	    alert(error.message);
    	    	       	                	            	            	        return;
    	    	       	                	            	            	          }
-                      const userId = data.user.id;
+                      const userId = data.user?.id;
 
    	    	       	                	            	            	            // Save profile
    	    	       	                	            	            	              await supabase.from("profiles").insert([{
