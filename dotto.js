@@ -96,7 +96,7 @@ async function loadMyRequests(){
     const user = userData.user;
 
     const { data, error } = await supabase
-        .from("support_request")
+        .from("support_requests")
         .select("*")
         .eq("email", user.email)
         .order("created_at", { ascending: false });
