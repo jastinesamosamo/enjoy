@@ -44,7 +44,7 @@ async function loadMyRequests(){
 
         box.innerHTML+=`
 
-        <div class="card">
+        <div class="request-card">
 
             <h3>${req.category}</h3>
 
