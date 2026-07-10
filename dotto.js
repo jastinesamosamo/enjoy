@@ -97,7 +97,7 @@ async function loadMyRequests(){
     const { data, error } = await supabase
         .from("support_request")
         .select("*")
-        .eq("user_email", user.email)
+        .eq("email", user.email)
         .order("created_at", { ascending: false });
 
 
@@ -154,7 +154,7 @@ async function loadMyRequests(){
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	          }
 
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	            alert("Request sent successfully!");
-   	    	       	                	            	            	              	                             	      	            	                     	              	                            	            };
+   	    	       	                	            	            	            loadMyRequests();  	                             	      	            	                     	              	                            	            };
 
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	            /* ======================
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	               LOGOUT
