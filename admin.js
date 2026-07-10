@@ -63,6 +63,7 @@ alert("welcome boss");
          box.innerHTML += `
          <div>
              <hr>
+               <p><b>Name:</b> ${req.full_name}</p>
              <p><b>Email:</b> ${req.email}</p>
              <p><b>Phone:</b> ${req.phone}</p>
              <p><b>Category:</b> ${req.category}</p>

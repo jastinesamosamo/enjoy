@@ -47,11 +47,13 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	    alert(error.message);
    	    	       	                	            	            	        return;
    	    	       	                	            	            	          }
-                      alert("Requests zilizopatikana: " + data.length);
+                      const userId = data.user?.id;
 
    	    	       	                	            	            	            // Save profile
    	    	       	                	            	            	              await supabase.from("profiles").insert([{
+                                                                                      user_id: userId,
    	    	       	                	            	            	              	    full_name: fullName,
+                                                                                      
    	    	       	                	            	            	              	        gender,
    	    	       	                	            	            	              	            email,
    	    	       	                	            	            	              	                phone,
@@ -86,54 +88,32 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	              	                             	      	            	                document.getElementById("dashboardSection").style.display = "block";
 
    	    	       	                	            	            	              	                             	      	            	                  document.getElementById("userEmail").innerText = email;
-   	    	       	                	            	            	              	                             	      	            	                  };
-loadMyRequests();
-
-async function loadMyRequests(){
-
-    const { data: userData } = await supabase.auth.getUser();
-
-    const user = userData.user;
-
-    const { data, error } = await supabase
-        .from("support_requests")
-        .select("*")
-        .eq("email", user.email)
-        .order("created_at", { ascending: false });
+                                                                                                                      const { data: profile, error: profileError } = await supabase
+    .from("profiles")
+    .select("full_name")
+    .eq("email", email)
+    .single();
 
 
-    if(error){
-        console.log(error.message);
-        return;
+
+    if(profileError){
+
+        console.log(profileError.message);
+
     }
+    else{
+   	     document.getElementById("userName").innerText = profile.full_name;
 
+    }	       	                	            	            	              	                             	      	            	                  };
 
-    const box = document.getElementById("userRequests");
-
-    box.innerHTML = "";
-
-
-    data.forEach(req => {
-
-        box.innerHTML += `
-        <div>
-            <hr>
-            <p><b>Problem:</b> ${req.problem}</p>
-            <p><b>Status:</b> ${req.status}</p>
-            <p><b>Reply:</b> ${req.reply || "Bado hujajibiwa"}</p>
-        </div>
-        `;
-
-    });
-
-}
    	    	       	                	            	            	              	                             	      	            	                  /* ======================
    	    	       	                	            	            	              	                             	      	            	                     SUBMIT REQUEST
    	    	       	                	            	            	              	                             	      	            	                     ====================== */
 
    	    	       	                	            	            	              	                             	      	            	                     window.submitRequest = async function () {
-
+                                                                                                                                                                      
    	    	       	                	            	            	              	                             	      	            	                     	  const email = document.getElementById("userEmail").innerText;
+                                                                                                                                                                  const fullName = document.getElementById("userName").innerText;
    	    	       	                	            	            	              	                             	      	            	                     	    const phone = document.getElementById("dashPhone").value;
    	    	       	                	            	            	              	                             	      	            	                     	      const age = document.getElementById("age").value;
    	    	       	                	            	            	              	                             	      	            	                     	        const sex = document.getElementById("dashGender").value;
@@ -141,12 +121,15 @@ async function loadMyRequests(){
    	    	       	                	            	            	              	                             	      	            	                     	            const problem = document.getElementById("problem").value;
 
    	    	       	                	            	            	              	                             	      	            	                     	              const { error } = await supabase.from("support_requests").insert([{
-   	    	       	                	            	            	              	                             	      	            	                     	              	    email,
-   	    	       	                	            	            	              	                             	      	            	                     	              	        phone,
-   	    	       	                	            	            	              	                             	      	            	                     	              	            age,
-   	    	       	                	            	            	              	                             	      	            	                     	              	                sex,
-   	    	       	                	            	            	              	                             	      	            	                     	              	                    category,
-   	    	       	                	            	            	              	                             	      	            	                     	              	                        problem
+                                                                                                                                                                                   full_name: fullName,
+    email: email,
+    phone: phone,
+    age: age,
+    sex: sex,
+    category: category,
+    problem: problem,
+    status: "pending"
+                                                                                                                                                                           
    	    	       	                	            	            	              	                             	      	            	                     	              	                          }]);
 
    	    	       	                	            	            	              	                             	      	            	                     	              	                            if (error) {
@@ -155,7 +138,8 @@ async function loadMyRequests(){
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	          }
 
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	            alert("Request sent successfully!");
-   	    	       	                	            	            	            loadMyRequests();  	                             	      	            	                     	              	                            	            };
+                                                                                                                                                                  window.location.href = "myrequests.html";
+   	    	       	                	            	            	           	                             	      	            	                     	              	                            	            };
 
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	            /* ======================
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	               LOGOUT
