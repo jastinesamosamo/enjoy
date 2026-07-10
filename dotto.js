@@ -81,13 +81,13 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	              	                             	      	            	        return;
    	    	       	                	            	            	              	                             	      	            	          }
 
-loadMyRequests();
    	    	       	                	            	            	              	                             	      	            	            document.getElementById("loginSection").style.display = "none";
    	    	       	                	            	            	              	                             	      	            	              document.getElementById("registerSection").style.display = "none";
    	    	       	                	            	            	              	                             	      	            	                document.getElementById("dashboardSection").style.display = "block";
 
    	    	       	                	            	            	              	                             	      	            	                  document.getElementById("userEmail").innerText = email;
    	    	       	                	            	            	              	                             	      	            	                  };
+loadMyRequests();
 
 async function loadMyRequests(){
 
