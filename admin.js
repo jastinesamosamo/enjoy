@@ -1,3 +1,4 @@
+alert("welcome boss");
  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
  
  const SUPABASE_URL = "https://qubemspkiqozonvdmvws.supabase.co";
@@ -41,7 +42,7 @@
  async function loadRequests(){
  
      const { data, error } = await supabase
-         .from("support_request")
+         .from("support_requests")
          .select("*")
          .order("created_at", { ascending:false });
  
@@ -89,7 +90,7 @@
  
  
      const { error } = await supabase
-     .from("support_request")
+     .from("support_requests")
      .update({
          reply: reply,
          status: "Answered"
