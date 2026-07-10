@@ -86,7 +86,23 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	              	                             	      	            	                document.getElementById("dashboardSection").style.display = "block";
 
    	    	       	                	            	            	              	                             	      	            	                  document.getElementById("userEmail").innerText = email;
-   	    	       	                	            	            	              	                             	      	            	                  };
+                                                                                                                      const { data: profile, error: profileError } = await supabase
+    .from("profiles")
+    .select("full_name")
+    .eq("email", email)
+    .single();
+
+
+
+    if(profileError){
+
+        console.log(profileError.message);
+
+    }
+    else{
+   	     document.getElementById("userName").innerText = profile.full_name;
+
+    }	       	                	            	            	              	                             	      	            	                  };
 
    	    	       	                	            	            	              	                             	      	            	                  /* ======================
    	    	       	                	            	            	              	                             	      	            	                     SUBMIT REQUEST
@@ -102,12 +118,15 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	              	                             	      	            	                     	            const problem = document.getElementById("problem").value;
 
    	    	       	                	            	            	              	                             	      	            	                     	              const { error } = await supabase.from("support_requests").insert([{
+                                                                                                                                                                                   full_name,
    	    	       	                	            	            	              	                             	      	            	                     	              	    email,
    	    	       	                	            	            	              	                             	      	            	                     	              	        phone,
    	    	       	                	            	            	              	                             	      	            	                     	              	            age,
    	    	       	                	            	            	              	                             	      	            	                     	              	                sex,
    	    	       	                	            	            	              	                             	      	            	                     	              	                    category,
-   	    	       	                	            	            	              	                             	      	            	                     	              	                        problem
+   	    	       	                	            	            	              	                             	      	            	                     	              	                        problem,
+                                                                                                                                                                                   status
+                                                                                                                                                                           
    	    	       	                	            	            	              	                             	      	            	                     	              	                          }]);
 
    	    	       	                	            	            	              	                             	      	            	                     	              	                            if (error) {
