@@ -155,6 +155,7 @@ async function loadMyRequests(){
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	          }
 
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	            alert("Request sent successfully!");
+                                                                                                                                                                  window.location.href = "myrequests.html";
    	    	       	                	            	            	            loadMyRequests();  	                             	      	            	                     	              	                            	            };
 
    	    	       	                	            	            	              	                             	      	            	                     	              	                            	            /* ======================
