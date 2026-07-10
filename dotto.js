@@ -51,7 +51,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
    	    	       	                	            	            	            // Save profile
    	    	       	                	            	            	              await supabase.from("profiles").insert([{
-                                                                                      user_id:userId,
+                                                                                      user_id: userId,
    	    	       	                	            	            	              	    full_name: fullName,
                                                                                       
    	    	       	                	            	            	              	        gender,
@@ -111,6 +111,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	              	                             	      	            	                     ====================== */
 
    	    	       	                	            	            	              	                             	      	            	                     window.submitRequest = async function () {
+                                                                                                                                                                      const fullName = document.getElementById("userName").innerText;
 
    	    	       	                	            	            	              	                             	      	            	                     	  const email = document.getElementById("userEmail").innerText;
                                                                                                                                                                   const fullName = document.getElementById("userName").innerText;
@@ -122,6 +123,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
    	    	       	                	            	            	              	                             	      	            	                     	              const { error } = await supabase.from("support_requests").insert([{
                                                                                                                                                                                    full_name,
+                                                                                                                                                                                   userId,
    	    	       	                	            	            	              	                             	      	            	                     	              	    email,
    	    	       	                	            	            	              	                             	      	            	                     	              	        phone,
    	    	       	                	            	            	              	                             	      	            	                     	              	            age,
