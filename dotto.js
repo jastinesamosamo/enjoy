@@ -121,15 +121,14 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	                	            	            	              	                             	      	            	                     	            const problem = document.getElementById("problem").value;
 
    	    	       	                	            	            	              	                             	      	            	                     	              const { error } = await supabase.from("support_requests").insert([{
-                                                                                                                                                                                   fullName,
-                                                                                                                                                                                   
-   	    	       	                	            	            	              	                             	      	            	                     	              	    email,
-   	    	       	                	            	            	              	                             	      	            	                     	              	        phone,
-   	    	       	                	            	            	              	                             	      	            	                     	              	            age,
-   	    	       	                	            	            	              	                             	      	            	                     	              	                sex,
-   	    	       	                	            	            	              	                             	      	            	                     	              	                    category,
-   	    	       	                	            	            	              	                             	      	            	                     	              	                        problem,
-                                                                                                                                                                                   status:"pending"
+                                                                                                                                                                                   full_name: fullName,
+    email: email,
+    phone: phone,
+    age: age,
+    sex: sex,
+    category: category,
+    problem: problem,
+    status: "pending"
                                                                                                                                                                            
    	    	       	                	            	            	              	                             	      	            	                     	              	                          }]);
 
