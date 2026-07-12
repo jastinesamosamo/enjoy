@@ -21,12 +21,12 @@ alert("welcome boss");
      });
  
      if (error) {
-         alert("Login imekataa: " + error.message);
+         alert("It's like you is unauthorised: " + error.message);
          return;
      }
  
      if (data.user.email !== ADMIN_EMAIL) {
-         alert("Huna ruhusa ya kuingia Admin Dashboard");
+         alert("You don't have a permissionto login as admin");
          await supabase.auth.signOut();
          return;
      }
@@ -105,7 +105,7 @@ alert("welcome boss");
      }
  
  
-     alert("Jibu limetumwa");
+     alert("successful answering");
      loadRequests();
  
  }
