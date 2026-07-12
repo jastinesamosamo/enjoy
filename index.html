@@ -7,6 +7,8 @@
       <title>Enjoy - Internet & Network Support</title>
 
         <link rel="stylesheet" href="dotto.css">
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d6efd">
         </head>
 
         <body>
@@ -73,7 +75,7 @@
                                                                                                                                                                                                                           <div class="input-group">
                                                                                                                                                                                                                                 <label>Birth Date</label>
                                                                                                                                                                                                                                       <input type="date" id="birthdate">
-                                                                                                                                                                                                                                          </div>
+                                                                                                                                                                                                                                         </div>
 
                                                                                                                                                                                                                                               <div class="input-group">
                                                                                                                                                                                                                                                     <label>Password</label>
@@ -148,6 +150,14 @@
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <!-- LINK JAVASCRIPT -->
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           <script type="module" src="dotto.js"></script>
-
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('Service Worker registered'))
+      .catch(error => console.log('Service Worker error:', error));
+  });
+}
+</script>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </body>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </html>
