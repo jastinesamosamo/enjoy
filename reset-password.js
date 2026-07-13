@@ -11,7 +11,9 @@ const { data, error } = await supabase.auth.getSession();
 if (error) {
 	    alert(error.message);
 	    }
-
+if (!data.session) {
+    alert("Session ya kubadilisha password haijapatikana.");
+}
 	    document.getElementById("savePassword").addEventListener("click", async () => {
 
 	    	    const password = document.getElementById("newPassword").value;
