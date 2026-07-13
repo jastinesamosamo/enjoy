@@ -5,46 +5,42 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Hakikisha mtumiaji ametoka kwenye email ya reset
-const { data, error } = await supabase.auth.getSession();
 
-if (error) {
-	    alert(error.message);
-	    }
-if (!data.session) {
-    alert("Session ya kubadilisha password haijapatikana.");
-}
-	    document.getElementById("savePassword").addEventListener("click", async () => {
+supabase.auth.onAuthStateChange(async (event, session) => {
 
-	    	    const password = document.getElementById("newPassword").value;
-	    	        const confirm = document.getElementById("confirmPassword").value;
+    if (event === "PASSWORD_RECOVERY") {
+        console.log("Ready to change password");
+    }
 
-	    	            if (password !== confirm) {
-	    	            	        alert("Passwords do not match.");
-	    	            	                return;
-	    	            	                    }
+});
 
-	    	            	                        if (password.length < 6) {
-	    	            	                        	        alert("Password lazima iwe angalau herufi 6.");
-	    	            	                        	                return;
-	    	            	                        	                    }
 
-	    	            	                        	                        const { error } = await supabase.auth.updateUser({
-	    	            	                        	                        	        password: password
-	    	            	                        	                        	            });
+document.getElementById("savePassword").addEventListener("click", async () => {
 
-	    	            	                        	                        	                if (error) {
-	    	            	                        	                        	                	        alert(error.message);
-	    	            	                        	                        	                	            } else {
-	    	            	                        	                        	                	            	        alert("Password imebadilishwa kikamilifu.");
+    const password = document.getElementById("newPassword").value;
+    const confirm = document.getElementById("confirmPassword").value;
 
-	    	            	                        	                        	                	            	                window.location.href = "index.html";
-	    	            	                        	                        	                	            	                    }
+    if(password !== confirm){
+        alert("Passwords do not match.");
+        return;
+    }
 
-	    	            	                        	                        	                	            	                    });
-	    	            	                        	                        	                	            
-	    	            	                        	                        	                
-	    	            	                        	                        
-	    	            	                        
-	    	            
-	
+    if(password.length < 6){
+        alert("Password lazima iwe angalau herufi 6.");
+        return;
+    }
+
+
+    const { error } = await supabase.auth.updateUser({
+        password: password
+    });
+
+
+    if(error){
+        alert(error.message);
+    }else{
+        alert("Password imebadilishwa kikamilifu.");
+        window.location.href="index.html";
+    }
+
+});
