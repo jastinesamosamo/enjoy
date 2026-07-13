@@ -156,22 +156,22 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
    	    	       	       	              	                             	      	            	                            };
    	    	       	       	              	            
 
-document.getElementById("forgotPassword").addEventListener("click", async function(e) {
+document.getElementById("forgotPassword").addEventListener("click", async(e)=>{
     e.preventDefault();
 
-    let email = prompt("Ingiza email yako:");
+    const email = prompt("Ingiza email yako:");
 
-    if (!email) {
-        return;
-    }
+    if(!email) return;
 
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: "https://jastinesamosamo.github.io/enjoy/reset-password.html"
+    const {error} = await supabase.auth.resetPasswordForEmail(email,{
+        redirectTo:"https://jastinesamosamo.github.io/enjoy/reset-password.html"
     });
 
-    if (error) {
-        alert("Tatizo limetokea: " + error.message);
-    } else {
-        alert("Tumetuma link ya kubadilisha password kwenye email yako.");
+
+    if(error){
+        alert(error.message);
+    }else{
+        alert("Link ya kubadilisha password imetumwa kwenye email yako.");
     }
-});                 	      	            	                           
+
+});
