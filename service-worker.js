@@ -1,4 +1,4 @@
-const CACHE_NAME = "enjoy-v1";
+const CACHE_NAME = "enjoy-v2";
 
 const FILES_TO_CACHE = [
   "/enjoy/",
