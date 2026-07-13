@@ -154,4 +154,24 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
    	    	       	                	            	            	              	                                            alert("Logged out!");
    	    	       	       	              	                             	      	            	                            };
-   	    	       	       	              	                             	      	            	                           
+   	    	       	       	              	            
+
+document.getElementById("forgotPassword").addEventListener("click", async function(e) {
+    e.preventDefault();
+
+    let email = prompt("Ingiza email yako:");
+
+    if (!email) {
+        return;
+    }
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: "https://jastinesamosamo.github.io/enjoy/"
+    });
+
+    if (error) {
+        alert("Tatizo limetokea: " + error.message);
+    } else {
+        alert("Tumetuma link ya kubadilisha password kwenye email yako.");
+    }
+});                 	      	            	                           
