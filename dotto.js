@@ -166,7 +166,7 @@ document.getElementById("forgotPassword").addEventListener("click", async functi
     }
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: "https://jastinesamosamo.github.io/enjoy/"
+        redirectTo: "https://jastinesamosamo.github.io/enjoy/reset-password.html"
     });
 
     if (error) {
