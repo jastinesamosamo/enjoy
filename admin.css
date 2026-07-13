@@ -7,13 +7,14 @@ body {
 
 h1, h2, h3 {
     text-align: center;
-    color: #333;
+    color: red;
+weight: bold;
 }
 
 #loginBox {
     width: 350px;
     margin: 40px auto;
-    background: white;
+    background: greenyellow;
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 0 10px #ccc;
@@ -29,13 +30,14 @@ input {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+color:blue;
 }
 
 button {
     width: 60%;
     padding: 12px;
-    background: blue;
-    color: green;
+    background: yellow;
+    color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
