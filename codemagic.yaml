@@ -1,16 +1,12 @@
 workflows:
-  android-build:
-      name: Build Enjoy APK
-          max_build_duration: 60
+  pwa-android:
+    name: Build Enjoy APK
+    max_build_duration: 60
 
-              environment:
-                    android_signing:
-                            - keystore_reference
+    scripts:
+      - name: Prepare build
+        script: |
+          echo "Building PWA Enjoy"
 
-                                scripts:
-                                      - name: Build APK
-                                              script: |
-                                                        echo "Building Enjoy APK"
-
-                                                            artifacts:
-                                                                  - build/**/*.apk
+    artifacts:
+      - "**/*" 
