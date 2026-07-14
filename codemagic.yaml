@@ -7,3 +7,7 @@ workflows:
       - name: Prepare build
         script: |
           echo "Building Enjoy PWA"
+          ls -la
+
+    artifacts:
+      - "**/*"
