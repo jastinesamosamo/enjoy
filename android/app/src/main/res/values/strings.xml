@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">enjoy</string>
+    <string name="title_activity_main">enjoy</string>
+    <string name="package_name">com.enjoy.support</string>
+    <string name="custom_url_scheme">com.enjoy.support</string>
+</resources>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Enjoy - Internet & Network Support</title>
+
+        <link rel="stylesheet" href="dotto.css">
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d6efd">
+        </head>
+
+        <body>
+
+          <!-- HEADER -->
+            <header class="header">
+                <h1>ENJOY</h1>
+                    <p>Internet & Network Support System</p>
+                      </header>
+
+                        <!-- LOGIN SECTION -->
+                          <section id="loginSection" class="container">
+
+                              <h2>Login</h2>
+
+                                  <div class="input-group">
+                                        <label>Email</label>
+                                              <input type="email" id="loginEmail" placeholder="Enter email">
+                                                  </div>
+
+                                                      <div class="input-group">
+                                                            <label>Password</label>
+                                                                  <input type="password" id="loginPassword" placeholder="Enter password">
+                                                                      </div>
+
+                                                                          <button id="loginBtn" onclick="login()">Login</button>
+
+  <p style="text-align:center; margin-top:10px;">
+  <a href="#" id="forgotPassword">Forgot Password?</a>
+</p>    
+                                                                        <p class="switch-text">
+                                                                                    Don't have an account?
+                                                                                          <a href="#" onclick="showRegister()">Register</a>
+                                                                                              </p>
+
+
+                                                                                                </section>
+
+                                                                                                  <!-- REGISTER SECTION -->
+                                                                                                    <section id="registerSection" class="container" style="display:none;">
+
+                                                                                                        <h2>Register</h2>
+
+                                                                                                            <div class="input-group">
+                                                                                                                  <label>Full Name</label>
+                                                                                                                        <input type="text" id="fullName" placeholder="Enter full name">
+                                                                                                                            </div>
+
+                                                                                                                                <div class="input-group">
+                                                                                                                                      <label>Gender</label>
+                                                                                                                                            <select id="gender">
+                                                                                                                                                    <option value="">Select gender</option>
+                                                                                                                                                            <option value="Male">Male</option>
+                                                                                                                                                                    <option value="Female">Female</option>
+                                                                                                                                                                          </select>
+                                                                                                                                                                              </div>
+
+                                                                                                                                                                                  <div class="input-group">
+                                                                                                                                                                                        <label>Email</label>
+                                                                                                                                                                                              <input type="email" id="email" placeholder="Enter email">
+                                                                                                                                                                                                  </div>
+
+                                                                                                                                                                                                      <div class="input-group">
+                                                                                                                                                                                                            <label>Phone Number</label>
+                                                                                                                                                                                                                  <input type="tel" id="phone" placeholder="Enter phone number">
+                                                                                                                                                                                                                      </div>
+
+                                                                                                                                                                                                                          <div class="input-group">
+                                                                                                                                                                                                                                <label>Birth Date</label>
+                                                                                                                                                                                                                                      <input type="date" id="birthdate">
+                                                                                                                                                                                                                                         </div>
+
+                                                                                                                                                                                                                                              <div class="input-group">
+                                                                                                                                                                                                                                                    <label>Password</label>
+                                                                                                                                                                                                                                                          <input type="password" id="password" placeholder="Create password">
+                                                                                                                                                                                                                                                              </div>
+
+                                                                                                                                                                                                                                                                  <div class="input-group">
+                                                                                                                                                                                                                                                                        <label>Confirm Password</label>
+                                                                                                                                                                                                                                                                              <input type="password" id="confirmPassword" placeholder="Confirm password">
+                                                                                                                                                                                                                                                                                  </div>
+
+                                                                                                                                                                                                                                                                                      <button id="registerBtn" onclick="register()">Register</button>
+
+                                                                                                                                                                                                                                                                                          <p class="switch-text">
+                                                                                                                                                                                                                                                                                                Already have an account?
+                                                                                                                                                                                                                                                                                                      <a href="#" onclick="showLogin()">Login</a>
+                                                                                                                                                                                                                                                                                                          </p>
+
+                                                                                                                                                                                                                                                                                                            </section>
+
+                                                                                                                                                                                                                                                                                                              <!-- DASHBOARD SECTION -->
+                                                                                                                                                                                                                                                                                                                <section id="dashboardSection" class="container" style="display:none;">
+
+                                                                                                                                                                                                                                                                                                                    <h2>Dashboard</h2>
+
+                                                                                                                                                                                                                                                                                                                        <p>
+                                                                                                                                                                                                                                                                                                                              Welcome, <span id="userName"></span><br>
+                                                                                                                                                                                                                                                                                                                          <span id="userEmail"></span> 
+                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                  </p>
+
+                                                                                                                                                                                                                                                                                                                                      <div class="input-group">
+                                                                                                                                                                                                                                                                                                                                            <label>Phone Number</label>
+                                                                                                                                                                                                                                                                                                                                                  <input type="text" id="dashPhone" placeholder="Your phone number">
+                                                                                                                                                                                                                                                                                                                                                      </div>
+
+                                                                                                                                                                                                                                                                                                                                                          <div class="input-group">
+                                                                                                                                                                                                                                                                                                                                                                <label>Age</label>
+                                                                                                                                                                                                                                                                                                                                                                      <input type="number" id="age" placeholder="Your age">
+                                                                                                                                                                                                                                                                                                                                                                          </div>
+
+                                                                                                                                                                                                                                                                                                                                                                              <div class="input-group">
+                                                                                                                                                                                                                                                                                                                                                                                    <label>Gender</label>
+                                                                                                                                                                                                                                                                                                                                                                                          <input type="text" id="dashGender" readonly>
+                                                                                                                                                                                                                                                                                                                                                                                              </div>
+
+                                                                                                                                                                                                                                                                                                                                                                                                  <div class="input-group">
+                                                                                                                                                                                                                                                                                                                                                                                                        <label>Category</label>
+                                                                                                                                                                                                                                                                                                                                                                                                              <select id="category">
+                                                                                                                                                                                                                                                                                                                                                                                                                      <option value="">Select problem type</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                              <option value="Internet Problem">Internet Problem</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                      <option value="WiFi Problem">WiFi Problem</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                              <option value="Mobile Data">Mobile Data</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                      <option value="Network Configuration">Network Configuration</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                              <option value="Website Problem">Website Problem</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <option value="Other">Other</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </select>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="input-group">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <label>Describe Your Problem</label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <textarea id="problem" rows="5"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        placeholder="Describe your internet or network problem in detail..."></textarea>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <button id="submitBtn" onclick="submitRequest()">Submit Request</button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <button id="logoutBtn" onclick="logout()">Logout</button>
+
+
+</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </section>
+
+                            
+<script type="module" src="reset-password.js"></script>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <!-- LINK JAVASCRIPT -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <script type="module" src="dotto.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('Service Worker registered'))
+      .catch(error => console.log('Service Worker error:', error));
+  });
+}
+</script>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </body>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </html>
