@@ -12,7 +12,7 @@ weight: bold;
 }
 
 #loginBox {
-    width: 350px;
+    width: 80%;
     margin: 40px auto;
     background: greenyellow;
     padding: 25px;
@@ -21,7 +21,7 @@ weight: bold;
 }
 
 input {
-    width: 80%;
+    width: 50%;
     padding: 12px;
     margin-top: 5px;
     margin-left: 10px;
@@ -34,7 +34,7 @@ color:blue;
 }
 
 button {
-    width: 60%;
+    width: 30%;
     padding: 12px;
     background: yellow;
     color: black;
@@ -64,7 +64,7 @@ button:hover {
 }
 
 textarea {
-    width: 90%;
+    width: 50%;
     height: 100px;
     padding: 10px;
     margin-top: 10px;
