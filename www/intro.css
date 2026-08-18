@@ -1,308 +1,711 @@
-*{
+/* =====================================================
+   ENJOY INTRO SCREEN
+   ===================================================== */
 
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #111936 0%,
+            #050816 45%,
+            #000 100%
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: white;
+
+    position: relative;
+}
+
+
+/* =====================================================
+   BACKGROUND GLOW
+   ===================================================== */
+
+.background {
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+.background span {
+
+    position: absolute;
+
+    display: block;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    filter: blur(70px);
+
+    opacity: .25;
+
+    animation:
+        floating 8s ease-in-out infinite;
+}
+
+
+/* Different positions */
+
+.background span:nth-child(1) {
+
+    background: #6366f1;
+
+    top: -80px;
+    left: -70px;
+}
+
+
+.background span:nth-child(2) {
+
+    background: #ec4899;
+
+    top: 10%;
+    right: -100px;
+
+    animation-delay: 1s;
+}
+
+
+.background span:nth-child(3) {
+
+    background: #06b6d4;
+
+    bottom: -100px;
+    left: 10%;
+
+    animation-delay: 2s;
+}
+
+
+.background span:nth-child(4) {
+
+    background: #8b5cf6;
+
+    bottom: 15%;
+    right: 5%;
+
+    animation-delay: 3s;
+}
+
+
+.background span:nth-child(5) {
+
+    background: #3b82f6;
+
+    top: 45%;
+    left: -120px;
+
+    animation-delay: 4s;
+}
+
+
+.background span:nth-child(6) {
+
+    background: #f43f5e;
+
+    top: -100px;
+    right: 30%;
+
+    animation-delay: 5s;
+}
+
+
+@keyframes floating {
+
+    0%,
+    100% {
+
+        transform:
+            translate(0, 0)
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            translate(40px, -30px)
+            scale(1.3);
+
+    }
+}
+
+
+/* =====================================================
+   INTRO
+   ===================================================== */
+
+.intro {
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 10;
+
+    animation:
+        introEnter 1s ease forwards;
+}
+
+
+@keyframes introEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(.85);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+}
+
+
+/* =====================================================
+   LOGO
+   ===================================================== */
+
+.logo-wrapper {
+
+    position: relative;
+
+    display: inline-flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+#logo {
+
+    font-size:
+        clamp(55px, 16vw, 100px);
+
+    font-weight: 900;
+
+    letter-spacing:
+        clamp(5px, 2vw, 14px);
+
+    position: relative;
+
+    z-index: 3;
+
+    background:
+        linear-gradient(
+            90deg,
+            #facc15,
+            #f97316,
+            #ec4899,
+            #8b5cf6,
+            #06b6d4
+        );
+
+    background-size: 300% 300%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        logoGradient 4s ease infinite,
+        logoAppear 1.5s ease forwards,
+        logoFloat 3s ease-in-out infinite,
+        logoGlow 2s ease-in-out infinite alternate;
+}
+
+
+@keyframes logoGradient {
+
+    0% {
+
+        background-position:
+            0% 50%;
+
+    }
+
+    50% {
+
+        background-position:
+            100% 50%;
+
+    }
+
+    100% {
+
+        background-position:
+            0% 50%;
+
+    }
+}
+
+
+@keyframes logoAppear {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(.2)
+            rotateX(60deg);
+
+        filter: blur(15px);
+
+    }
+
+    70% {
+
+        transform:
+            scale(1.08)
+            rotateX(0);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotateX(0);
+
+        filter: blur(0);
+
+    }
+}
+
+
+@keyframes logoFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-7px);
+
+    }
+}
+
+
+@keyframes logoGlow {
+
+    from {
+
+        text-shadow:
+
+            0 0 10px
+            rgba(250,204,21,.5),
+
+            0 0 30px
+            rgba(236,72,153,.3);
+
+    }
+
+    to {
+
+        text-shadow:
+
+            0 0 20px
+            rgba(6,182,212,.7),
+
+            0 0 50px
+            rgba(139,92,246,.5),
+
+            0 0 80px
+            rgba(236,72,153,.3);
+
+    }
+}
+
+
+/* =====================================================
+   RING AROUND LOGO
+   ===================================================== */
+
+.logo-ring {
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    box-shadow:
+
+        0 0 25px
+        rgba(99,102,241,.25),
+
+        inset 0 0 25px
+        rgba(236,72,153,.15);
+
+    animation:
+        ringRotate 7s linear infinite;
+
+    z-index: 1;
+}
+
+
+.logo-ring::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: #06b6d4;
+
+    box-shadow:
+        0 0 15px #06b6d4,
+        0 0 30px #06b6d4;
+
+    top: -6px;
+    left: 50%;
+}
+
+
+@keyframes ringRotate {
+
+    from {
+
+        transform:
+            rotate(0deg);
+
+    }
+
+    to {
+
+        transform:
+            rotate(360deg);
+
+    }
+}
+
+
+/* =====================================================
+   TAGLINE
+   ===================================================== */
+
+#tagline {
+
+    margin-top: 20px;
+
+    font-size:
+        clamp(12px, 3vw, 15px);
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(255,255,255,.55);
+
+    opacity: 0;
+
+    animation:
+        taglineAppear
+        1s
+        1.8s
+        ease
+        forwards;
+}
+
+
+@keyframes taglineAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+}
+
+
+/* =====================================================
+   WELCOME
+   ===================================================== */
+
+#welcome {
+
+    margin-top: 28px;
+
+    font-size:
+        clamp(19px, 5vw, 28px);
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    color: #fff;
+
+    opacity: 0;
+
+    animation:
+        welcomeAppear
+        1s
+        3.5s
+        ease
+        forwards;
+}
+
+
+@keyframes welcomeAppear {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(.8);
+
+        filter: blur(8px);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+
+    }
+}
+
+
+/* =====================================================
+   LOADING DOTS
+   ===================================================== */
+
+.loading {
+
+    margin-top: 25px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    opacity: 0;
+
+    animation:
+        loadingAppear
+        1s
+        4.2s
+        ease
+        forwards;
+}
+
+
+.loading span {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #a78bfa;
+
+    box-shadow:
+        0 0 10px #8b5cf6;
+
+    animation:
+        loadingDot
+        1s
+        ease-in-out
+        infinite;
+}
+
+
+.loading span:nth-child(2) {
+
+    animation-delay: .15s;
+}
+
+
+.loading span:nth-child(3) {
+
+    animation-delay: .3s;
+}
+
+
+@keyframes loadingAppear {
+
+    to {
+
+        opacity: 1;
+
+    }
+}
+
+
+@keyframes loadingDot {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+        opacity: .4;
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-7px);
+
+        opacity: 1;
+
+    }
+}
+
+
+/* =====================================================
+   EXIT
+   ===================================================== */
+
+.intro.exit {
+
+    animation:
+        exitAnimation
+        1.2s
+        ease
+        forwards;
+}
+
+
+@keyframes exitAnimation {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+        filter:
+            blur(0);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            scale(1.25);
+
+        filter:
+            blur(15px);
+
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 500px) {
+
+    .logo-ring {
+
+        width: 150px;
+        height: 150px;
+
+    }
 
 }
 
 
+@media (prefers-reduced-motion: reduce) {
 
-body{
+    *,
+    *::before,
+    *::after {
 
-height:100vh;
-background:#000;
+        animation-duration:
+            .01ms !important;
 
-display:flex;
-justify-content:center;
-align-items:center;
+        animation-iteration-count:
+            1 !important;
 
-overflow:hidden;
-
-}
-
-
-
-.intro{
-
-text-align:center;
-
-}
-
-
-
-/* Logo */
-
-#logo{
-
-
-font-size:80px;
-
-font-weight:bold;
-
-letter-spacing:15px;
-
-color:gold;
-
-opacity:0;
-
-
-animation:
-
-showLogo 1.5s forwards,
-colorChange 4s 1.5s infinite alternate,
-rotate3D 4s infinite alternate,
-glow 1.5s infinite alternate;
-
-
-}
-
-
-
-
-@keyframes showLogo{
-
-
-from{
-
-opacity:0;
-
-transform:scale(.2);
-
-}
-
-
-to{
-
-opacity:1;
-
-transform:scale(1);
-
-}
-
-
-}
-
-
-
-
-@keyframes colorChange{
-
-
-from{
-
-color:gold;
-
-}
-
-
-to{
-
-color:#ff1493;
-
-}
-
-
-}
-
-
-
-
-@keyframes rotate3D{
-
-
-from{
-
-transform:rotateY(-25deg);
-
-}
-
-
-to{
-
-transform:rotateY(25deg);
-
-}
-
-
-}
-
-
-
-
-@keyframes glow{
-
-
-from{
-
-
-text-shadow:
-
-0 0 10px gold,
-0 0 30px gold;
-
-
-}
-
-
-to{
-
-
-text-shadow:
-
-0 0 20px #ff1493,
-0 0 60px #ff1493;
-
-
-}
-
-
-}
-
-
-
-
-
-/* First text */
-
-
-#text1{
-
-
-margin-top:25px;
-
-font-size:25px;
-
-color:white;
-
-opacity:0;
-
-
-animation:
-
-showText 1s 2.5s forwards;
-
-
-}
-
-
-
-
-@keyframes showText{
-
-
-from{
-
-
-opacity:0;
-
-transform:translateY(40px);
-
-
-}
-
-
-to{
-
-
-opacity:1;
-
-transform:translateY(0);
-
-
-}
-
-
-}
-
-
-
-
-
-/* Welcome */
-
-
-#welcome{
-
-
-margin-top:35px;
-
-font-size:35px;
-
-color:#ff1493;
-
-opacity:0;
-
-
-animation:
-
-showWelcome 1s 4s forwards;
-
-
-}
-
-
-
-
-
-@keyframes showWelcome{
-
-
-from{
-
-
-opacity:0;
-
-transform:scale(.5);
-
-
-}
-
-
-to{
-
-
-opacity:1;
-
-transform:scale(1);
-
-
-}
-
-
-}
-
-
-
-
-
-/* Exit animation */
-
-
-.exit{
-
-
-animation:exitAnimation 1.5s forwards;
-
-
-}
-
-
-
-
-@keyframes exitAnimation{
-
-
-to{
-
-
-opacity:0;
-
-transform:scale(1.4);
-
-
-}
-
-
+    }
 }
