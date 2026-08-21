@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.jastinesamo.enjoy",
+        "sha256_cert_fingerprints": ["13:87:E8:27:E6:FF:FE:BF:29:8C:59:25:9C:14:EB:83:2D:E7:31:85:5C:F8:88:42:6B:7F:CD:9D:FD:74:85:38"]
+      }
+    }]
